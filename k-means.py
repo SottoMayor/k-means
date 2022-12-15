@@ -22,13 +22,36 @@ dataset_BK = np.array([
     [-3.08329, -60.07215],
     [-2.99563, -60.00292]])
 
+# Para as franquias do Burger King...
 kmeans = KMeans(n_clusters=3,  # numero de clusters
                 init='k-means++', n_init=10,
                 max_iter=300)  # numero máximo de iterações
 pred_y = kmeans.fit_predict(dataset_BK)
 
 # posicionamento dos eixos x e y
+plt.title('Franquias do Burger King')
+plt.xlabel('Latitude')
+plt.ylabel('Longitude')
 plt.scatter(dataset_BK[:, 1], dataset_BK[:, 0], c=pred_y)
+plt.xlim(-60.15, -59.85)
+plt.ylim(-3.25, -2.75)
+plt.grid(True, 'both', 'both')
+plt.scatter(kmeans.cluster_centers_[:, 1], kmeans.cluster_centers_[
+            :, 0], s=70, c='red')
+plt.show()
+
+
+# Para as franquias do McDonald's...
+kmeans = KMeans(n_clusters=3,  # numero de clusters
+                init='k-means++', n_init=10,
+                max_iter=300)  # numero máximo de iterações
+pred_y = kmeans.fit_predict(dataset_MC)
+
+# posicionamento dos eixos x e y
+plt.title('Franquias do McDonald\'s')
+plt.xlabel('Latitude')
+plt.ylabel('Longitude')
+plt.scatter(dataset_MC[:, 1], dataset_MC[:, 0], c=pred_y)
 plt.xlim(-60.15, -59.85)
 plt.ylim(-3.25, -2.75)
 plt.grid(True, 'both', 'both')
